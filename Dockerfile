@@ -1,8 +1,12 @@
 FROM openshift/base-centos7
 
-MAINTAINER Ben Browning <bbrownin@redhat.com>
-
 EXPOSE 8080/tcp
+
+# OpenVPN is not available via standard repos available in cent os .. 
+# It's available via EPEL repository. 
+# First install EPEL repo and then install open vpn.
+RUN yum update -y
+RUN yum install -y epel-release
 
 RUN yum install -y openvpn easy-rsa
 
